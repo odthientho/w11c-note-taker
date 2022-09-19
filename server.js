@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+const notes = require('./db/db.json');
+const fs = require('fs');
 
 const PORT = 3001;
 
@@ -18,10 +20,24 @@ app.get('/notes', (req, res) => {
 })
 
 app.get('/api/notes', (req, res) => {
+    res.json(notes);
 });
 
-// POST request to add a review
 app.post('/api/notes', (req, res) => {
+    var newNote = req.body;
+    if (newNote) {
+        newNote.id = notes[notes.length-1].id+1;
+        notes.push(newNote);
+        fs.writeFile(path.join(__dirname, '/db/db.json'), JSON.stringify(notes, null, 4), (err) => {
+            if (err) console.log(err);
+        });
+        res.status(201).json({
+            status: 'success',
+            body: newNote,
+        });
+    } else {
+        res.status(500).json('Error in adding notes.');
+    }
 });
 
 app.listen(PORT, () =>
