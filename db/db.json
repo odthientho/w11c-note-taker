@@ -1,2 +1,12 @@
 [
+    {
+        "title": "New Note",
+        "text": "a New Note is created",
+        "id": 1
+    },
+    {
+        "title": "Another new note",
+        "text": "hello this is my second new note",
+        "id": 2
+    }
 ]
