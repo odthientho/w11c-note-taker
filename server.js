@@ -1,9 +1,8 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const { json } = require('express');
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
@@ -37,7 +36,7 @@ app.post('/api/notes', (req, res) => {
         fs.readFile(path.join(__dirname, '/db/db.json'), "utf8", (err, data) => {
             if (err) {
                 console.log(err);
-                res.status(500).json('Error in reading notes.');
+                res.status(500).json('Error in reading files.');
                 return;
             }
             let notes = JSON.parse(data);
@@ -54,6 +53,31 @@ app.post('/api/notes', (req, res) => {
         });
     } else {
         res.status(500).json('Error in adding notes.');
+    }
+});
+
+app.delete('/api/notes/:id', (req, res) => {
+    let noteId = parseInt(req.params.id);
+    if (noteId) {
+        fs.readFile(path.join(__dirname, '/db/db.json'), "utf8", (err, data) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json('Error in reading files.');
+                return;
+            }
+            let notes = JSON.parse(data);
+            notes = notes.filter((aNote) => aNote.id !== noteId);
+            fs.writeFile(path.join(__dirname, '/db/db.json'), JSON.stringify(notes, null, 4), (err) => {
+                if (err) console.log(err);
+            });
+            res.status(201).json({
+                status: 'success',
+                body: noteId,
+            });
+        });
+
+    } else {
+        res.status(500).json('Error in deleting notes.');
     }
 });
 

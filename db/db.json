@@ -1,12 +1,17 @@
 [
     {
-        "title": "New Note",
-        "text": "a New Note is created",
-        "id": 1
+        "title": "This is a second note",
+        "text": "You need to do something ok?",
+        "id": 2
     },
     {
-        "title": "Another new note",
-        "text": "hello this is my second new note",
-        "id": 2
+        "title": "Note\"Sha",
+        "text": "Note\" takin' hello `",
+        "id": 3
+    },
+    {
+        "title": "Adding One More Note",
+        "text": "This is a new note that I just added",
+        "id": 4
     }
 ]
