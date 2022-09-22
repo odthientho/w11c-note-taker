@@ -32,9 +32,11 @@ This app can be used to write and save notes, so that user can organize their th
 
 ## Deployment
 
-You can either access to deployed application on.
-- [Note-Taker-GitHub](https://odthientho.github.io/w11c-note-taker)
+You can access to deployed application on:
 - [Note-Taker-Heroku](https://w11c-notes-taker.herokuapp.com/)
+
+Or access to GitHub repository on:
+- [Note-Taker-GitHub](https://github.com/odthientho/w11c-note-taker)
 
 
 ## Questions
